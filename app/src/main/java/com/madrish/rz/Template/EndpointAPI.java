@@ -1,4 +1,4 @@
-package com.madrish.ramalanzodiak.Template;
+package com.madrish.rz.Template;
 
 /**
  * Created by -Andevindo- on 10/8/2015.

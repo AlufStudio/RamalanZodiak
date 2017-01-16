@@ -1,4 +1,4 @@
-package com.madrish.ramalanzodiak.Activity;
+package com.madrish.rz.Activity;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -8,7 +8,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
 
-import com.madrish.ramalanzodiak.R;
+import com.madrish.rz.R;
 
 /**
  * Created by A MADRISH on 9/25/2016

@@ -1,11 +1,10 @@
-package com.madrish.ramalanzodiak.Adapter;
+package com.madrish.rz.Adapter;
 
 /**
  * Created by A MADRISH on 10/15/2016
  */
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,14 +14,12 @@ import android.widget.TextView;
 
 
 import com.bumptech.glide.Glide;
-import com.madrish.ramalanzodiak.Activity.HasilRamal;
-import com.madrish.ramalanzodiak.Activity.HasilWatak;
-import com.madrish.ramalanzodiak.R;
+import com.madrish.rz.Activity.HasilRamal;
+import com.madrish.rz.R;
 
 import java.util.List;
 
-public class WatakCardViewAdapter extends RecyclerView.Adapter<WatakCardViewAdapter.MyViewHolder> {
-
+public class HarianCardViewAdapter extends RecyclerView.Adapter<HarianCardViewAdapter.MyViewHolder> {
     private Context mContext;
     private List<CardSquare> cardSquareList;
 
@@ -35,12 +32,11 @@ public class WatakCardViewAdapter extends RecyclerView.Adapter<WatakCardViewAdap
             title = (TextView) view.findViewById(R.id.title);
             thumbnail = (ImageView) view.findViewById(R.id.thumbnail);
 
-
         }
     }
 
 
-    public WatakCardViewAdapter(Context mContext, List<CardSquare> albumList) {
+    public HarianCardViewAdapter(Context mContext, List<CardSquare> albumList) {
         this.mContext = mContext;
         this.cardSquareList = albumList;
     }
@@ -55,7 +51,7 @@ public class WatakCardViewAdapter extends RecyclerView.Adapter<WatakCardViewAdap
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
-        final CardSquare album = cardSquareList.get(position);
+        CardSquare album = cardSquareList.get(position);
         holder.title.setText(album.getName());
 
         // loading album cover using Glide library
@@ -63,9 +59,8 @@ public class WatakCardViewAdapter extends RecyclerView.Adapter<WatakCardViewAdap
         holder.thumbnail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent a = new Intent(mContext, HasilWatak.class);
-                a.putExtra("bulan", position);
-                a.putExtra("zodiak", album.getName());
+                Intent a = new Intent(mContext, HasilRamal.class);
+                a.putExtra("bulan", String.valueOf(position+1));
                 mContext.startActivity(a);
             }
         });

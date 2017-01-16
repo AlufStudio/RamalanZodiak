@@ -1,6 +1,4 @@
-package com.madrish.ramalanzodiak.Utils;
-
-import android.util.Log;
+package com.madrish.rz.Utils;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -8,8 +6,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.madrish.ramalanzodiak.Interface.VolleyInterface;
-import com.madrish.ramalanzodiak.Template.Template;
+import com.madrish.rz.Interface.VolleyInterface;
+import com.madrish.rz.Template.Template;
 
 import org.json.JSONObject;
 

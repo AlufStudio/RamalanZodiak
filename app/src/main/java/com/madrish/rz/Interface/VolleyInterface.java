@@ -1,4 +1,4 @@
-package com.madrish.ramalanzodiak.Interface;
+package com.madrish.rz.Interface;
 
 
 import com.android.volley.VolleyError;

@@ -1,120 +1,129 @@
-package com.madrish.ramalanzodiak.Activity;
+package com.madrish.rz.Activity;
 
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Bundle;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.TextView;
 
-import com.madrish.ramalanzodiak.Adapter.CardSquare;
-import com.madrish.ramalanzodiak.Adapter.MainAdapter;
-import com.madrish.ramalanzodiak.R;
+import com.madrish.rz.Adapter.CardSquare;
+import com.madrish.rz.Adapter.HarianCardViewAdapter;
+import com.madrish.rz.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+
+/**
+ * Created by A MADRISH on 9/10/2016
+ */
+public class ZodiakActivity extends AppCompatActivity{
     private RecyclerView recyclerView;
-    private MainAdapter adapter;
+    private HarianCardViewAdapter adapter;
     private List<CardSquare> cardSquareList;
+    ActionBar actionbar;
+    TextView textview;
+    ActionBar.LayoutParams layoutparams;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        initCollapsingToolbar();
+        setContentView(R.layout.ramal_harian);
+
+        customActionBar();
+
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
         cardSquareList = new ArrayList<>();
-        adapter = new MainAdapter(this, cardSquareList);
+        adapter = new HarianCardViewAdapter(this, cardSquareList);
 
-        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 3);
         recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.addItemDecoration(new MainActivity.GridSpacingItemDecoration(2, dpToPx(1), true));
+        recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(1), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
         prepareAlbums();
     }
+
+    private void customActionBar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        ActionBar.LayoutParams params = new ActionBar.LayoutParams(//Center the textview in the ActionBar !
+                ActionBar.LayoutParams.WRAP_CONTENT,
+                ActionBar.LayoutParams.MATCH_PARENT,
+                Gravity.CENTER);
+        View viewActionBar = getLayoutInflater().inflate(R.layout.title_abs, null);
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        TextView tit = (TextView)viewActionBar.findViewById(R.id.mytext);
+        tit.setText(R.string.ramalan_harian);
+        getSupportActionBar().setCustomView(viewActionBar, params);
+    }
+
 
     /**
      * Adding few albums for testing
      */
     private void prepareAlbums() {
         int[] covers = new int[]{
-                R.drawable.stroke_button,
-                R.drawable.stroke_button,
-                R.drawable.stroke_button,
-                R.drawable.stroke_button,
-                R.drawable.stroke_button};
+                R.drawable.capricorn,
+                R.drawable.aquarius,
+                R.drawable.pisces,
+                R.drawable.aries,
+                R.drawable.taurus,
+                R.drawable.gemini,
+                R.drawable.cancer,
+                R.drawable.leo,
+                R.drawable.virgo,
+                R.drawable.libra,
+                R.drawable.scorpio,
+                R.drawable.sagitarius};
 
-        CardSquare a = new CardSquare("Sejarah Zodiak", covers[0]);
+        CardSquare a = new CardSquare("Capricorn", covers[0]);
         cardSquareList.add(a);
 
-        a = new CardSquare("Ramalan Harian", covers[1]);
+        a = new CardSquare("Aquarius", covers[1]);
         cardSquareList.add(a);
 
-        a = new CardSquare("Karakter dan Watak", covers[2]);
+        a = new CardSquare("Pisces", covers[2]);
         cardSquareList.add(a);
 
-        a = new CardSquare("Kesehatan", covers[3]);
+        a = new CardSquare("Aries", covers[3]);
         cardSquareList.add(a);
 
-        a = new CardSquare("Pengaturan", covers[4]);
+        a = new CardSquare("Taurus", covers[4]);
         cardSquareList.add(a);
-/*
+
         a = new CardSquare("Gemini", covers[5]);
         cardSquareList.add(a);
 
         a = new CardSquare("Cancer", covers[6]);
-        cardSquareList.add(a);*/
+        cardSquareList.add(a);
+
+        a = new CardSquare("Leo", covers[7]);
+        cardSquareList.add(a);
+
+        a = new CardSquare("Virgo", covers[8]);
+        cardSquareList.add(a);
+
+        a = new CardSquare("Libra", covers[9]);
+        cardSquareList.add(a);
+
+        a = new CardSquare("Scorpio", covers[10]);
+        cardSquareList.add(a);
+
+        a = new CardSquare("Sagitarius", covers[11]);
+        cardSquareList.add(a);
 
         adapter.notifyDataSetChanged();
-    }
-
-    /**
-     * Initializing collapsing toolbar
-     * Will show and hide the toolbar title on scroll
-     */
-    private void initCollapsingToolbar() {
-        final CollapsingToolbarLayout collapsingToolbar =
-                (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-
-        collapsingToolbar.setTitle(" ");
-        AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.appbar);
-        appBarLayout.setExpanded(true);
-
-        // hiding & showing the title when toolbar expanded & collapsed
-        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
-            boolean isShow = false;
-            int scrollRange = -1;
-
-            @Override
-            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-                if (scrollRange == -1) {
-                    scrollRange = appBarLayout.getTotalScrollRange();
-                }
-                if (scrollRange + verticalOffset == 0) {
-                    collapsingToolbar.setTitle("Ramal Zodiak");
-                    isShow = true;
-                } else if (isShow) {
-                    collapsingToolbar.setTitle(" ");
-                    isShow = false;
-                }
-            }
-        });
-    }
-
-
-    @Override
-    public void onBackPressed() {
-            super.onBackPressed();
     }
 
     /**
@@ -162,4 +171,5 @@ public class MainActivity extends AppCompatActivity {
         Resources r = getResources();
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
     }
+
 }

@@ -1,4 +1,4 @@
-package com.madrish.ramalanzodiak.Utils;
+package com.madrish.rz.Utils;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;

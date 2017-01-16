@@ -1,4 +1,4 @@
-package com.madrish.ramalanzodiak.Adapter;
+package com.madrish.rz.Adapter;
 
 /**
  * Created by A MADRISH on 10/15/2016
@@ -14,12 +14,13 @@ import android.widget.TextView;
 
 
 import com.bumptech.glide.Glide;
-import com.madrish.ramalanzodiak.Activity.HasilRamal;
-import com.madrish.ramalanzodiak.R;
+import com.madrish.rz.Activity.HasilWatak;
+import com.madrish.rz.R;
 
 import java.util.List;
 
-public class HarianCardViewAdapter extends RecyclerView.Adapter<HarianCardViewAdapter.MyViewHolder> {
+public class WatakCardViewAdapter extends RecyclerView.Adapter<WatakCardViewAdapter.MyViewHolder> {
+
     private Context mContext;
     private List<CardSquare> cardSquareList;
 
@@ -32,11 +33,12 @@ public class HarianCardViewAdapter extends RecyclerView.Adapter<HarianCardViewAd
             title = (TextView) view.findViewById(R.id.title);
             thumbnail = (ImageView) view.findViewById(R.id.thumbnail);
 
+
         }
     }
 
 
-    public HarianCardViewAdapter(Context mContext, List<CardSquare> albumList) {
+    public WatakCardViewAdapter(Context mContext, List<CardSquare> albumList) {
         this.mContext = mContext;
         this.cardSquareList = albumList;
     }
@@ -51,7 +53,7 @@ public class HarianCardViewAdapter extends RecyclerView.Adapter<HarianCardViewAd
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
-        CardSquare album = cardSquareList.get(position);
+        final CardSquare album = cardSquareList.get(position);
         holder.title.setText(album.getName());
 
         // loading album cover using Glide library
@@ -59,8 +61,9 @@ public class HarianCardViewAdapter extends RecyclerView.Adapter<HarianCardViewAd
         holder.thumbnail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent a = new Intent(mContext, HasilRamal.class);
-                a.putExtra("bulan", String.valueOf(position+1));
+                Intent a = new Intent(mContext, HasilWatak.class);
+                a.putExtra("bulan", position);
+                a.putExtra("zodiak", album.getName());
                 mContext.startActivity(a);
             }
         });

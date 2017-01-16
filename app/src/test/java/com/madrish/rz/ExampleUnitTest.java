@@ -1,4 +1,4 @@
-package com.madrish.ramalanzodiak;
+package com.madrish.rz;
 
 import org.junit.Test;
 

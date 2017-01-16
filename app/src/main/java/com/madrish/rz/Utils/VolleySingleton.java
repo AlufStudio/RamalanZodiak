@@ -1,8 +1,8 @@
-package com.madrish.ramalanzodiak.Utils;
+package com.madrish.rz.Utils;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
-import com.madrish.ramalanzodiak.Application.MyApplication;
+import com.madrish.rz.Application.MyApplication;
 
 public class VolleySingleton {
 

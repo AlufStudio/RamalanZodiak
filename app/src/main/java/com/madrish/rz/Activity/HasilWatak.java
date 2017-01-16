@@ -1,8 +1,6 @@
-package com.madrish.ramalanzodiak.Activity;
+package com.madrish.rz.Activity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -10,7 +8,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
 
-import com.madrish.ramalanzodiak.R;
+import com.madrish.rz.R;
 
 /**
  * Created by A MADRISH on 10/15/2016

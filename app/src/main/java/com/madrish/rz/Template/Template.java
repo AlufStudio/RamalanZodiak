@@ -1,4 +1,4 @@
-package com.madrish.ramalanzodiak.Template;
+package com.madrish.rz.Template;
 
 public interface Template {
 

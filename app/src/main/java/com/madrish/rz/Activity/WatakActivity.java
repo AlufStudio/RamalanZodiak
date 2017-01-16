@@ -1,4 +1,4 @@
-package com.madrish.ramalanzodiak.Activity;
+package com.madrish.rz.Activity;
 
 import android.content.res.Resources;
 import android.graphics.Rect;
@@ -14,41 +14,36 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
 
-import com.madrish.ramalanzodiak.Adapter.CardSquare;
-import com.madrish.ramalanzodiak.Adapter.HarianCardViewAdapter;
-import com.madrish.ramalanzodiak.R;
+import com.madrish.rz.Adapter.CardSquare;
+import com.madrish.rz.Adapter.WatakCardViewAdapter;
+import com.madrish.rz.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
- * Created by A MADRISH on 9/10/2016
+ * Created by A MADRISH on 10/16/2016
  */
-public class ZodiakActivity extends AppCompatActivity{
+
+public class WatakActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
-    private HarianCardViewAdapter adapter;
+    private WatakCardViewAdapter adapter;
     private List<CardSquare> cardSquareList;
-    ActionBar actionbar;
-    TextView textview;
-    ActionBar.LayoutParams layoutparams;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.ramal_harian);
-
+        setContentView(R.layout.watak_activity);
         customActionBar();
-
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
         cardSquareList = new ArrayList<>();
-        adapter = new HarianCardViewAdapter(this, cardSquareList);
+        adapter = new WatakCardViewAdapter(this, cardSquareList);
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 3);
         recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(1), true));
+        recyclerView.addItemDecoration(new WatakActivity.GridSpacingItemDecoration(2, dpToPx(1), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
         prepareAlbums();
@@ -64,10 +59,9 @@ public class ZodiakActivity extends AppCompatActivity{
         View viewActionBar = getLayoutInflater().inflate(R.layout.title_abs, null);
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         TextView tit = (TextView)viewActionBar.findViewById(R.id.mytext);
-        tit.setText(R.string.ramalan_harian);
+        tit.setText("Karakter dan Watak");
         getSupportActionBar().setCustomView(viewActionBar, params);
     }
-
 
     /**
      * Adding few albums for testing
@@ -171,5 +165,4 @@ public class ZodiakActivity extends AppCompatActivity{
         Resources r = getResources();
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
     }
-
 }

@@ -1,4 +1,4 @@
-package com.madrish.ramalanzodiak.Adapter;
+package com.madrish.rz.Adapter;
 
 /**
  * Created by A MADRISH on 10/15/2016
@@ -15,12 +15,11 @@ import android.widget.TextView;
 
 
 import com.bumptech.glide.Glide;
-import com.madrish.ramalanzodiak.Activity.HasilRamal;
-import com.madrish.ramalanzodiak.Activity.SejarahZodiak;
-import com.madrish.ramalanzodiak.Activity.SettingsActivity;
-import com.madrish.ramalanzodiak.Activity.WatakActivity;
-import com.madrish.ramalanzodiak.Activity.ZodiakActivity;
-import com.madrish.ramalanzodiak.R;
+import com.madrish.rz.Activity.SejarahZodiak;
+import com.madrish.rz.Activity.SettingsActivity;
+import com.madrish.rz.Activity.WatakActivity;
+import com.madrish.rz.Activity.ZodiakActivity;
+import com.madrish.rz.R;
 
 import java.util.List;
 

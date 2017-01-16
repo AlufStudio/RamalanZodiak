@@ -1,4 +1,4 @@
-package com.madrish.ramalanzodiak.Adapter;
+package com.madrish.rz.Adapter;
 
 /**
  * Created by A MADRISH on 10/15/2016

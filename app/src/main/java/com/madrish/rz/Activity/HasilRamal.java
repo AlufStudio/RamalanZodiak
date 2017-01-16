@@ -1,18 +1,16 @@
-package com.madrish.ramalanzodiak.Activity;
+package com.madrish.rz.Activity;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.VolleyError;
-import com.madrish.ramalanzodiak.Interface.VolleyInterface;
-import com.madrish.ramalanzodiak.R;
-import com.madrish.ramalanzodiak.Template.EndpointAPI;
-import com.madrish.ramalanzodiak.Template.Template;
-import com.madrish.ramalanzodiak.Utils.VolleyRequest;
+import com.madrish.rz.Interface.VolleyInterface;
+import com.madrish.rz.R;
+import com.madrish.rz.Template.EndpointAPI;
+import com.madrish.rz.Template.Template;
+import com.madrish.rz.Utils.VolleyRequest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -51,7 +49,7 @@ public class HasilRamal extends AppCompatActivity implements VolleyInterface{
             newString= (String) savedInstanceState.getSerializable("bulan");
         }
 
-        mRequest.sendGetRequest(EndpointAPI.IBACOR+ Template.Query.NAMA+"a&"+ Template.Query.TGL+"01-"+newString+"-2000");
+        mRequest.sendGetRequest(EndpointAPI.IBACOR+ Template.Query.NAMA+"a&"+ Template.Query.TGL+"01-"+newString+"-1995");
     }
 
     @Override
@@ -75,20 +73,23 @@ public class HasilRamal extends AppCompatActivity implements VolleyInterface{
 
         try {
             JSONObject ramalan_ = jsonObject.getJSONObject("ramalan");
-            r_umum = ramalan_.getString("umum");
-            JSONObject percintaan = ramalan_.getJSONObject("percintaan");
+            JSONObject up_harian = ramalan_.getJSONObject("harian");
+            r_umum = up_harian.getString("umum");
+            JSONObject percintaan = up_harian.getJSONObject("percintaan");
             r_single = percintaan.getString("single");
             r_couple = percintaan.getString("couple");
-            r_karir = ramalan_.getString("karir_keuangan");
+            r_karir = up_harian.getString("karir_keuangan");
 
         } catch (JSONException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
 
         if(r_karir!=null){
             r_umum_out.setText(r_umum);
-            r_single_out.setText("Single - "+r_single);
-            r_couple_out.setText("Couple - "+r_couple);
+            String stS = "Single - "+r_single;
+            String stP = "Couple - "+r_couple;
+            r_single_out.setText(stS);
+            r_couple_out.setText(stP);
             r_karir_out.setText(r_karir);
         }
         progress.dismiss();
